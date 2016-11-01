@@ -142,6 +142,7 @@ module JSONRPC
 
   class Client < Base
     def method_missing(method, *args, &block)
+      args = args.first if args.size == 1 && args.first.is_a?(::Hash)
       invoke(method, args)
     end
 
